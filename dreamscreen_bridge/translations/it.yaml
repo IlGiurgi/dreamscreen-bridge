@@ -1,0 +1,23 @@
+configuration:
+  dreamscreen_ip:
+    name: IP del DreamScreen
+    description: Lascia vuoto per cercarlo automaticamente in rete.
+  group:
+    name: Gruppo
+    description: Il DreamScreen invia i colori solo alle SideKick del suo gruppo. Se è nel gruppo 0 viene spostato qui all'avvio.
+  gain:
+    name: Intensità colori
+    description: Moltiplicatore dei colori (1 = come li manda il DreamScreen, 2 = il doppio).
+  smoothing:
+    name: Morbidezza
+    description: Ammorbidisce le transizioni (0 = nessuna, 0.9 = molto morbide).
+  fps_log_interval:
+    name: Intervallo log fps
+    description: Ogni quanti secondi scrivere nel log i fotogrammi al secondo (0 = mai).
+  devices:
+    name: Luci WLED
+    description: >-
+      Per ogni luce: name, ip, leds (numero di LED), mode (average = un colore unico,
+      spread = schermo da sinistra a destra, center = dal centro verso i lati),
+      sectors (solo per average, settori da mediare 1-12, es. "9,10,11,12,1"),
+      reverse (inverte la striscia).

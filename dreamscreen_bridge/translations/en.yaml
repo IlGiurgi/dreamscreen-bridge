@@ -1,0 +1,22 @@
+configuration:
+  dreamscreen_ip:
+    name: DreamScreen IP
+    description: Leave empty to discover it on the network.
+  group:
+    name: Group
+    description: The DreamScreen only streams to SideKicks in its group. If it is in group 0 it is moved here on start.
+  gain:
+    name: Colour gain
+    description: Colour multiplier (1 = as sent by the DreamScreen).
+  smoothing:
+    name: Smoothing
+    description: Softens transitions (0 = none, 0.9 = very soft).
+  fps_log_interval:
+    name: FPS log interval
+    description: Seconds between fps log lines (0 = never).
+  devices:
+    name: WLED lights
+    description: >-
+      Per light: name, ip, leds, mode (average = single colour, spread = screen left
+      to right, center = from the middle outwards), sectors (average only, 1-12),
+      reverse.

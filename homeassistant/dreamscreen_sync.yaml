@@ -1,0 +1,32 @@
+# DreamScreen -> WLED sync: an on/off switch for the DreamScreen Bridge add-on.
+# Copy into /config/packages/ and make sure configuration.yaml contains:
+#   homeassistant:
+#     packages: !include_dir_named packages
+
+input_boolean:
+  dreamscreen_sync:
+    name: DreamScreen Sync
+    icon: mdi:television-ambient-light
+
+automation:
+  - id: dreamscreen_sync_toggle
+    alias: DreamScreen Sync - avvia/ferma add-on
+    mode: restart
+    triggers:
+      - trigger: state
+        entity_id: input_boolean.dreamscreen_sync
+      - trigger: homeassistant
+        event: start
+    actions:
+      - if:
+          - condition: state
+            entity_id: input_boolean.dreamscreen_sync
+            state: "on"
+        then:
+          - action: hassio.addon_start
+            data:
+              addon: local_dreamscreen_bridge
+        else:
+          - action: hassio.addon_stop
+            data:
+              addon: local_dreamscreen_bridge

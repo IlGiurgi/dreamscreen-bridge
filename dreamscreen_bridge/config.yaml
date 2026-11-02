@@ -1,0 +1,44 @@
+name: DreamScreen Bridge
+version: "1.0.0"
+slug: dreamscreen_bridge
+description: Porta i colori del DreamScreen sulle luci WLED (emula una SideKick)
+url: https://github.com/IlGiurgi
+arch:
+  - aarch64
+  - amd64
+  - armv7
+  - armhf
+init: false
+startup: application
+boot: auto
+host_network: true
+options:
+  dreamscreen_ip: ""
+  group: 1
+  gain: 1.0
+  smoothing: 0.0
+  fps_log_interval: 300
+  devices:
+    - name: Lampada
+      ip: 192.168.86.36
+      leds: 60
+      mode: average
+      sectors: "9,10,11,12,1"
+    - name: Divano
+      ip: 192.168.86.25
+      leds: 300
+      mode: center
+      reverse: false
+schema:
+  dreamscreen_ip: str?
+  group: int(1,254)
+  gain: float(0.2,5)
+  smoothing: float(0,0.95)
+  fps_log_interval: int(0,3600)
+  devices:
+    - name: str
+      ip: str
+      leds: int(1,4000)
+      mode: list(average|spread|center)
+      sectors: str?
+      reverse: bool?
