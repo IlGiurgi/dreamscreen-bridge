@@ -27,7 +27,7 @@ inoltra a WLED via DDP. Funziona in modalità Video e Musica.
 | `group` | il DreamScreen trasmette solo alle SideKick del suo gruppo; se è nel gruppo 0 viene spostato qui |
 | `gain` | intensità colori (1 = originale) |
 | `smoothing` | morbidezza transizioni (0–0.95) |
-| `devices` | luci WLED: `name`, `ip`, `leds`, `mode`, `sectors`, `reverse` |
+| `devices` | luci: `name`, `ip`, `leds`, `mode`, `sectors`, `reverse`, `protocol` (`ddp` per WLED, `drgb` per l'effetto WLED di ESPHome) |
 
 Modalità per luce:
 - `average`: colore unico, media dei `sectors` (es. `"9,10,11,12,1"` = bordo inferiore)

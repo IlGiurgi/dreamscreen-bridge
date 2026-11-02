@@ -20,4 +20,4 @@ configuration:
       Per ogni luce: name, ip, leds (numero di LED), mode (average = un colore unico,
       spread = schermo da sinistra a destra, center = dal centro verso i lati),
       sectors (solo per average, settori da mediare 1-12, es. "9,10,11,12,1"),
-      reverse (inverte la striscia).
+      reverse (inverte la striscia), protocol (ddp per WLED, drgb per l'effetto WLED di ESPHome).

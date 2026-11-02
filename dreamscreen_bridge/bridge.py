@@ -31,6 +31,8 @@ DEFAULT_OPTIONS = {
     "devices": [
         {"name": "Lampada", "ip": "192.168.86.36", "leds": 60, "mode": "average", "sectors": "9,10,11,12,1"},
         {"name": "Divano", "ip": "192.168.86.25", "leds": 300, "mode": "center"},
+        # ESPHome "wled" effect: speaks WLED realtime UDP (DRGB), not DDP
+        {"name": "LED Orologio", "ip": "192.168.86.51", "leds": 5, "mode": "average", "protocol": "drgb"},
     ],
 }
 
@@ -41,6 +43,7 @@ RINGS = [[5, 11], [4, 6, 10, 12], [3, 7, 2, 8, 1, 9]]
 
 DS_PORT = 8888
 DDP_PORT = 4048
+REALTIME_PORT = 21324
 
 
 def log(msg):
@@ -154,6 +157,16 @@ def send_ddp(sock, ip, rgb):
         header = bytes([flags, _seq, 0x0B, 0x01]) + off.to_bytes(4, "big") + len(chunk).to_bytes(2, "big")
         sock.sendto(header + chunk, (ip, DDP_PORT))
 
+def send_drgb(sock, ip, rgb):
+    """WLED realtime UDP, DRGB (protocol 2): up to 490 LEDs, 2 s timeout."""
+    sock.sendto(bytes([2, 2]) + rgb[:490 * 3], (ip, REALTIME_PORT))
+
+def send(sock, device, rgb):
+    if device.get("protocol") == "drgb":
+        send_drgb(sock, device["ip"], rgb)
+    else:
+        send_ddp(sock, device["ip"], rgb)
+
 # --- main loops ------------------------------------------------------------
 
 def load_options(path):
@@ -230,7 +243,7 @@ def run(opts):
                 state = [tuple(s[j] * smoothing + c[j] * (1 - smoothing) for j in range(3)) for s, c in zip(state, raw)]
             sectors = {i + 1: state[i] for i in range(12)}
             for dev in opts["devices"]:
-                send_ddp(out, dev["ip"], render(dev, sectors, gain))
+                send(out, dev, render(dev, sectors, gain))
             if not streaming:
                 log("Streaming")
                 streaming = True
@@ -251,7 +264,7 @@ def test(opts, seconds):
             r, g, b = colorsys.hsv_to_rgb((s / 12 + shift) % 1, 1, 1)
             sectors[s] = (r * 255, g * 255, b * 255)
         for dev in opts["devices"]:
-            send_ddp(out, dev["ip"], render(dev, sectors, opts["gain"]))
+            send(out, dev, render(dev, sectors, opts["gain"]))
         time.sleep(1 / 30)
 
 if __name__ == "__main__":

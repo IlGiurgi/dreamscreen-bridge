@@ -1,5 +1,5 @@
 name: DreamScreen Bridge
-version: "1.0.1"
+version: "1.0.2"
 slug: dreamscreen_bridge
 description: Porta i colori del DreamScreen sulle luci WLED (emula una SideKick)
 url: https://github.com/IlGiurgi/dreamscreen-bridge
@@ -29,6 +29,11 @@ options:
       leds: 300
       mode: center
       reverse: false
+    - name: LED Orologio
+      ip: 192.168.86.51
+      leds: 5
+      mode: average
+      protocol: drgb
 schema:
   dreamscreen_ip: str?
   group: int(1,254)
@@ -42,3 +47,4 @@ schema:
       mode: list(average|spread|center)
       sectors: str?
       reverse: bool?
+      protocol: list(ddp|drgb)?

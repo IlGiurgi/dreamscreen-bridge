@@ -19,4 +19,4 @@ configuration:
     description: >-
       Per light: name, ip, leds, mode (average = single colour, spread = screen left
       to right, center = from the middle outwards), sectors (average only, 1-12),
-      reverse.
+      reverse, protocol (ddp for WLED, drgb for the ESPHome WLED effect).
