@@ -1,4 +1,5 @@
 # DreamScreen -> WLED sync: an on/off switch for the DreamScreen Bridge add-on.
+# Add-on slug comes from the repo URL; check it in the add-on page URL if it differs.
 # Copy into /config/packages/ and make sure configuration.yaml contains:
 #   homeassistant:
 #     packages: !include_dir_named packages
@@ -25,8 +26,8 @@ automation:
         then:
           - action: hassio.addon_start
             data:
-              addon: local_dreamscreen_bridge
+              addon: b5eab443_dreamscreen_bridge
         else:
           - action: hassio.addon_stop
             data:
-              addon: local_dreamscreen_bridge
+              addon: b5eab443_dreamscreen_bridge

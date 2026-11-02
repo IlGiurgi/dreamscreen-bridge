@@ -6,9 +6,9 @@ inoltra a WLED via DDP. Funziona in modalità Video e Musica.
 
 ## Installazione su Home Assistant OS
 
-1. Copia la cartella `dreamscreen_bridge/` in `\\homeassistant\addons\` (add-on Samba).
-2. Impostazioni → Componenti aggiuntivi → Store → ⋮ → **Verifica aggiornamenti**.
-   In fondo compare **Componenti aggiuntivi locali → DreamScreen Bridge**: installalo.
+1. Impostazioni → Componenti aggiuntivi → Store → ⋮ → **Repository** → aggiungi `https://github.com/IlGiurgi/dreamscreen-bridge`.
+2. Nello Store compare la sezione **DreamScreen Bridge** (se no: ⋮ → **Verifica aggiornamenti**):
+   apri l'add-on e installalo.
 3. Scheda **Configurazione** per luci e impostazioni, poi **Avvia**. Controlla il **Registro**:
    deve comparire `Streaming`.
 4. (Facoltativo) interruttore in HA: copia `homeassistant/dreamscreen_sync.yaml` in
