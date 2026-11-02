@@ -1,5 +1,5 @@
 name: DreamScreen Bridge
-version: "1.0.0"
+version: "1.0.1"
 slug: dreamscreen_bridge
 description: Porta i colori del DreamScreen sulle luci WLED (emula una SideKick)
 url: https://github.com/IlGiurgi/dreamscreen-bridge

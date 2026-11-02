@@ -1,7 +1,4 @@
-ARG BUILD_FROM
-FROM $BUILD_FROM
-
-RUN apk add --no-cache python3
+FROM python:3.13-alpine
 
 COPY bridge.py /bridge.py
 
